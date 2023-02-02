@@ -1,0 +1,422 @@
+$colors: (red, green, blue, yellow, purple, orange, pink);
+$num: 50;
+
+button{
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover{
+    background-color: #98AEEB;
+  }
+}
+
+html{
+    box-sizing: border-box;
+    margin: 0;
+}
+.card{
+    margin: 50px auto 0 auto;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    color: #92a0bd;
+    background:linear-gradient(#EFF6FF,#EFF1FE,#ECEDFF);
+    .container{
+        width: 100%;
+        padding: 10px 30px;
+        // width: 60%;
+        h1{
+           
+            margin-bottom: 0px;
+        }
+        .title{
+            border-bottom: 2px solid rgb(121, 135, 166);
+            padding-bottom: 10px;
+        }
+        .progressBar{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            p{
+              font-weight: 400;
+            }
+            .empty{
+                width: 100%;
+                height: 100%;
+                height: 15px;
+                border-radius: 15px;
+                overflow: hidden;
+                background-color: white;
+                position: relative;
+                z-index: 1;
+                .howLong{
+                    transition: .5s;
+                    border-radius: 15px;
+                    height: 100%;
+                    background-color: #98AEEB;
+                    position: absolute;
+                    z-index: 2;
+                }
+            }
+            
+        }
+        .listWrap{
+            margin: 10px auto 10px auto;
+            width: 100%;
+            height: 250px;
+            overflow-y:scroll;
+            padding-right: 30px;
+            overflow-x: hidden;
+            
+            
+              
+            .list{
+                border-radius: 3px;
+                border-left: 4.5px solid #6479bd;
+                margin: 10px auto;
+                // padding: 0 10px;
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                background-color: #fff;
+                font-weight: 400;
+              
+                .left{
+                  
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-left: 10px;
+                    width: 90%;
+
+                    .check{
+                      display: inline-block;
+                      position: relative;
+                      width: 18px;
+                      height: 18px;
+                      border: 1px solid rgb(129, 128, 128);
+                      border-radius: 3.5px;
+                    }
+                    .check::after {
+                      content: '';
+                      position: absolute;
+                      border-right: 2px solid white;
+                      border-bottom: 2px solid white;
+                      transform: rotate(45deg);
+                      width: 5px;
+                      height: 10px;
+                      top: 2px;
+                      left: 7px;
+                      opacity: 0;
+                    }
+                    .v{
+                      display: none;
+                    }
+                    .v:checked+.check {
+                      background-color: #7B92C6;
+                    }
+                    .v:checked +.check::after{
+                      opacity: 1;
+                      
+                    }
+                    
+                    p{
+                      font-size: 1.1rem;
+                      line-height: 1.2rem;
+                    }
+                   
+                }
+                .right{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 20%;
+                    
+                    button{
+                      width: 50px;
+                      height: 30px;
+                      border: none;
+                      border-radius: 5px;
+                    }
+                   
+                    i{
+                      margin:0 5px;
+                      cursor: pointer;
+                      color: #ccc;
+                      font-weight: 700;
+                      &:hover{
+                        color: red;
+                      }
+                  }
+                }
+               
+               
+            }
+            
+            
+        }
+        
+
+
+        .bottom{
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+           .search{
+           
+            width: 87%;
+            input{
+                width: 100%;
+                height: 43px;
+                border: none;
+            }
+            }      
+            .add{
+                width: 13%;
+                height: 45px;
+                border-radius: 3px;
+                cursor:pointer;
+                background-color: #7B8ED2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: .2s;
+                &:hover{
+                  background-color: rgb(202, 167, 235);
+                }
+                
+                i{
+                    color: white;
+                    font-size: 1.3rem;
+                   
+                }
+            }
+        }
+    }
+}
+
+.switchArea{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content:flex-end;
+    align-items:center;
+    margin-bottom: 100px;
+    gap: 20px;
+    
+    border-top: 2px solid rgb(121, 135, 166);
+    p{
+      margin-top: 30px;
+      font-size: .9rem;
+    }
+    .switch { /*==設定開關鈕的長寬==*/
+      position: relative;
+      width: 50px;
+      height: 10px;
+      line-height: 30px;
+    }
+    .switchCheckbox {
+     position: absolute;
+     display: none;
+    }
+    .switchLabel {
+      display: block;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+    .switchTxt {
+      display: block;
+      width: 200%;
+      margin-left: -100%;
+      transition: margin 0.3s ease-in 0s;
+    }
+    .switchTxt::before,
+    .switchTxt::after {
+      display: block;
+      float: right;
+      width: 50%;
+      font-size: 13px;
+      color: #fff;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+    /*==開關鈕底色(開啟時)==*/
+    .switchTxt::after {
+      content: attr(turnOn);
+      padding-left: 10px;
+      background: rgb(140, 150, 179);
+      color: rgb(140, 150, 179);
+    }
+    /*開關鈕底色(關閉時)*/
+    .switchTxt::before {
+      content: attr(turnOff);
+      padding-right: 10px;
+      background: rgb(255, 255, 255);
+      color: rgb(255, 255, 255);
+      text-align: right;
+    }
+    /*==開關鈕的顏色與大小==*/
+    .switchRoundBtn {
+      position: absolute;
+      display: block;
+      width: 18px;
+      height: 18px;
+      margin: 2px;
+      background-color: rgb(140, 150, 179);
+      top: 4px;
+      right: 27px;
+      border-radius: 13px;
+      transition: all 0.3s ease-in 0s;
+    }
+    .switchCheckbox:checked + .switchLabel .switchTxt {
+      margin-left: 0;
+      color: rgb(140, 150, 179);
+      
+    }
+  
+    .switchCheckbox:checked + .switchLabel .switchRoundBtn{
+      right: 1px;
+      background-color: white;
+    }
+  
+}
+
+
+
+
+.listWrap::-webkit-scrollbar {
+    width: 8px;
+  }
+.listWrap::-webkit-scrollbar-track {
+    background: transparent
+  }
+.listWrap::-webkit-scrollbar-thumb {
+    background: #b7bef1;
+    border-radius: 10px;
+  }
+
+
+
+  .boxWrap{
+    position: fixed;
+    z-index: 10;
+    margin-top: -50px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.477);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .lightBoxCard{
+      border-radius: 10px;
+      width: 500px;
+      height: 200px;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p{
+
+      }
+    }
+  }
+
+
+
+  //灑花
+
+  @for $i from 0 through $num {
+    $w: random(20); //寬度的隨機變數
+    $l: random(100); //位置left的隨機變數
+   
+    
+  //長方形的傢伙
+    .confetti{
+      &:nth-child(#{$i}){
+        position: absolute;
+        width: #{$w}px;
+        height: #{$w*0.4}px;
+        background-color: nth($colors, random(7));
+        top: -10%;
+      //unquote()會讓這一串出來沒有引號，才會正常運作不然拿掉試試看
+      //做了一個向上噴射再次往下掉的動畫 & 一直旋轉的動畫
+      //animation-delay和不同的duration會讓大家位置錯開，就算是同一個left
+        animation: drop-#{$i} unquote(5+random()+"s") unquote(random()+"s") 1, 
+  spin-#{random(3)} 0.3s ease infinite;
+        }
+      }
+    
+  //三角形的東東
+    .tri{
+      //JS是先生出50個長方形再長出三角形的，就依照順序 50 + 1/ 50+2...這樣下去辣
+      &:nth-child(#{$num + $i}){
+          position: absolute;
+          top: -10%;
+          border-bottom: #{$w * 1.5}px solid nth($colors, random(7));
+          border-right: #{$w/2}px solid transparent;
+          border-left: #{$w/2}px solid transparent;
+          animation: drop-#{$i} unquote(5+random()+"s") unquote(random()+"s") 1, 
+  spin-#{random(3)} 0.3s ease infinite;
+           }
+    }
+    
+  //彩帶
+    .ribbon{
+      &:nth-child(#{$num*2 + $i}){
+        position: absolute;
+        top: -10%;
+        animation: drop-#{$i} unquote(5+random()+"s") unquote(random()+"s") 1, spin-#{random(3)} 0.3s ease infinite;
+        
+        &:before{
+          content: '';
+          width: #{$w}px;  
+          height: #{$w}px;
+          position: absolute;
+          border-radius: 50%;
+          border-left: 5px solid nth($colors, random(7));    
+          transform: translate(35%,-90%);
+        }
+        &:after{
+          content: '';
+          width: #{$w}px;  
+          height: #{$w}px;
+          position: absolute;
+          border-radius: 50%;
+          border-right: 5px solid nth($colors, random(7));
+        }
+      }
+  }
+  
+  //這個會做出50個版本，讓大家都掉在不同地方    
+    @keyframes drop-#{$i} {
+     0%{
+        top: 100%;
+        left: 50%;
+      }
+      10%{
+        top: -10%;
+      }
+      100% {
+        top: 150%;
+        left: unquote($l+"%");
+        opacity: 0;
+      }
+    }
+  }
+  
+  //旋轉！就兩個版本辣
+    @keyframes spin-1{
+      to{
+        transform: rotate3d(1,0,0,360deg);
+      }
+    }
+    @keyframes spin-2{
+      to{
+        transform: rotate3d(0,1,0,360deg);
+      }
+    }
