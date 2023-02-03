@@ -1,37 +1,48 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateText } from "../../../store/todolistSlice";
 
-function EditForm({ id, updateText, text }) {
+function EditForm({ id, text }) {
   const [inputEditingValue, setInputEditingValue] = useState(text);
+  const dispatch = useDispatch();
   return (
     <>
       <input
         type="text"
         value={inputEditingValue}
-        size='20'
+        size="20"
         onChange={(e) => {
           setInputEditingValue(e.target.value);
         }}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            updateText(id, {
-              text: inputEditingValue,
-              editing: false,
-            });
+          if (e.key === "Enter") {
+            dispatch(
+              updateText({
+                id: id,
+                objValue: {
+                  text: inputEditingValue,
+                  editing: false,
+                },
+              })
+            );
           }
         }}
       />
       <button
         onClick={() => {
-          updateText(id, {
-            text: inputEditingValue,
-            editing: false,
-          });
+          dispatch(
+            updateText({
+              id: id,
+              objValue: {
+                text: inputEditingValue,
+                editing: false,
+              },
+            })
+          );
         }}
       >
         儲存
       </button>
-    
     </>
   );
 }
